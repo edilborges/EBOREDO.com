@@ -9,7 +9,7 @@ ARQ_CODIGOS_USADOS = "codigos_usados.json"
 ARQ_ACESSOS = "acessos.json"
 
 # Códigos válidos (você pode aumentar essa lista)
-codigos_validos = ["INF2025", "ABC123", "COD45"]
+codigos_validos = ["Desenvolvedor"]
 
 # Funções para carregar e salvar usuários
 def carregar_usuarios():
