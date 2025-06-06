@@ -3,7 +3,7 @@ import json
 import os
 from datetime import datetime
 
-Arquivos
+
 
 ARQ_USUARIOS = "usuarios.json"
 ARQ_CODIGOS_USADOS = "codigos_usados.json"
@@ -13,11 +13,11 @@ ARQ_ACESSOS = "acessos.json"
 
 ADMIN = "Borges"  # Somente esse usuário pode ver os acessos
 
-Códigos válidos (você pode aumentar essa lista)
+Códigos válidos 
 
 codigos_validos = ["INF2025", "ABC123", "COD45", "EDIL", "edil"]
 
-Funções para carregar e salvar usuários
+
 
 def carregar_usuarios():
 if os.path.exists(ARQ_USUARIOS):
@@ -29,7 +29,6 @@ def salvar_usuarios(usuarios):
 with open(ARQ_USUARIOS, "w") as f:
 json.dump(usuarios, f)
 
-Funções para controlar códigos usados
 
 def carregar_codigos_usados():
 if os.path.exists(ARQ_CODIGOS_USADOS):
@@ -43,7 +42,7 @@ usados.append(codigo)
 with open(ARQ_CODIGOS_USADOS, "w") as f:
 json.dump(usados, f)
 
-Função para registrar acesso
+
 
 def registrar_acesso(usuario):
 if os.path.exists(ARQ_ACESSOS):
@@ -60,12 +59,10 @@ acessos.append({
 with open(ARQ_ACESSOS, "w") as f:  
     json.dump(acessos, f)
 
-Carrega dados
 
 usuarios = carregar_usuarios()
 codigos_usados = carregar_codigos_usados()
 
-Interface
 
 st.title("Área Protegida - Login e Cadastro")
 
