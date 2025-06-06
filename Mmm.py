@@ -9,13 +9,13 @@ ARQ_USUARIOS = "usuarios.json"
 ARQ_CODIGOS_USADOS = "codigos_usados.json"
 ARQ_ACESSOS = "acessos.json"
 
-Nome do administrador
+
 
 ADMIN = "Borges"  # Somente esse usuário pode ver os acessos
 
 Códigos válidos (você pode aumentar essa lista)
 
-codigos_validos = ["INF2025", "ABC123", "COD45"]
+codigos_validos = ["INF2025", "ABC123", "COD45", "EDIL", "edil"]
 
 Funções para carregar e salvar usuários
 
