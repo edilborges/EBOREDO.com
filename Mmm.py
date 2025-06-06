@@ -1,13 +1,15 @@
 import streamlit as st
 import json
 import os
+from datetime import datetime
 
 # Arquivos
 ARQ_USUARIOS = "usuarios.json"
 ARQ_CODIGOS_USADOS = "codigos_usados.json"
+ARQ_ACESSOS = "acessos.json"
 
 # Códigos válidos (você pode aumentar essa lista)
-codigos_validos = ["EDIL", "Desenvolvedor"]
+codigos_validos = ["INF2025", "ABC123", "COD45"]
 
 # Funções para carregar e salvar usuários
 def carregar_usuarios():
@@ -32,6 +34,22 @@ def salvar_codigo_usado(codigo):
     usados.append(codigo)
     with open(ARQ_CODIGOS_USADOS, "w") as f:
         json.dump(usados, f)
+
+# Função para registrar acesso
+def registrar_acesso(usuario):
+    if os.path.exists(ARQ_ACESSOS):
+        with open(ARQ_ACESSOS, "r") as f:
+            acessos = json.load(f)
+    else:
+        acessos = []
+
+    acessos.append({
+        "usuario": usuario,
+        "data": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    })
+
+    with open(ARQ_ACESSOS, "w") as f:
+        json.dump(acessos, f)
 
 # Carrega dados
 usuarios = carregar_usuarios()
@@ -68,10 +86,21 @@ elif opcao == "Login":
 
     if st.button("Entrar"):
         if usuario in usuarios and usuarios[usuario] == senha:
+            registrar_acesso(usuario)  # ⬅️ registra o acesso
             st.success(f"🎉 Bem-vindo, {usuario}!")
             st.markdown("---")
             st.markdown("### Conteúdo liberado:")
             st.write("- ✅ Acesso autorizado")
             st.write("- 📂 Material exclusivo")
+
+            # Mostrar histórico de acessos (opcional)
+            if st.checkbox("📜 Ver quem já acessou"):
+                if os.path.exists(ARQ_ACESSOS):
+                    with open(ARQ_ACESSOS, "r") as f:
+                        acessos = json.load(f)
+                        for a in acessos:
+                            st.write(f"👤 {a['usuario']} - {a['data']}")
+                else:
+                    st.write("Nenhum acesso registrado ainda.")
         else:
             st.error("❌ Usuário ou senha incorretos.")
