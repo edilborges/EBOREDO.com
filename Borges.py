@@ -10,7 +10,7 @@ ARQ_LOG_REGISTROS = "logs_registros.json"
 ARQ_LOG_LOGINS = "logs_logins.json"
 
 # Códigos válidos
-codigos_validos = ["INF2025", "ABC123", "COD45"]
+codigos_validos = ["EBF", "ABC1234", "EDIL", "edil", "olaborges"]
 
 # Dados fixos do administrador
 ADMIN_USER = "Borges"
